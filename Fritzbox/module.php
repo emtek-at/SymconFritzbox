@@ -445,6 +445,19 @@ class Fritzbox extends IPSModule
         
         $fbox = null;  
     }
+
+    public function EnableCallDiversionId($id) {
+        $fbox = new fritzbox_api($this->InstanceID);
+
+        $formfields = array(
+            'getpage'                             => '/fon_num/rul_list.lua',
+            'rul_'.$id                            => 1,
+            'apply'                               => '',
+        );
+        $fbox->doPostForm($formfields);
+
+        $fbox = null;
+    }
     
     public function DisableCallDiversion() {
         $fbox = new fritzbox_api($this->InstanceID);
@@ -455,6 +468,19 @@ class Fritzbox extends IPSModule
         ); 
         $fbox->doPostForm($formfields);   
         
+        $fbox = null;
+    }
+
+    public function DisableCallDiversionId($id) {
+        $fbox = new fritzbox_api($this->InstanceID);
+
+        $formfields = array(
+            'getpage'                             => '/fon_num/rul_list.lua',
+            'rul_'.$id                            => 0,
+            'apply'                               => '',
+        );
+        $fbox->doPostForm($formfields);
+
         $fbox = null;
     }
     
